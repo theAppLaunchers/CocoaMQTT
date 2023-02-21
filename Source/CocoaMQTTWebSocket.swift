@@ -99,9 +99,9 @@ public class CocoaMQTTWebSocket: CocoaMQTTSocketProtocol {
 //        if shouldConnectWithURIOnly {
 //            urlStr = "\(uri)"
 //        } else {
-        urlStr = "wss://\(host):\(port)\(uri)"
+            urlStr = "wss://\(host):\(port)\(uri)"
 //        }
-        
+
         guard let url = URL(string: urlStr) else { throw CocoaMQTTError.invalidURL }
         try internalQueue.sync {
             connection?.disconnect()
@@ -326,9 +326,7 @@ public extension CocoaMQTTWebSocket {
         
         public func write(data: Data, handler: @escaping (Error?) -> Void) {
             task?.send(.data(data)) { possibleError in
-                self.queue.async {
-                    handler(possibleError)
-                }
+                handler(possibleError)
             }
         }
         
@@ -384,8 +382,8 @@ extension CocoaMQTTWebSocket.FoundationConnection: URLSessionWebSocketDelegate {
         }
     }
     public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge) async -> (URLSession.AuthChallengeDisposition, URLCredential?) {
-         return (.performDefaultHandling, nil)
-    }
+             return (.performDefaultHandling, nil)
+         }
 }
 
 // MARK: - CocoaMQTTWebSocket.StarscreamConnection
