@@ -383,6 +383,9 @@ extension CocoaMQTTWebSocket.FoundationConnection: URLSessionWebSocketDelegate {
             self.delegate?.connectionClosed(self, withError: CocoaMQTTError.FoundationConnection.closed(closeCode))
         }
     }
+    public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge) async -> (URLSession.AuthChallengeDisposition, URLCredential?) {
+         return (.performDefaultHandling, nil)
+    }
 }
 
 // MARK: - CocoaMQTTWebSocket.StarscreamConnection
