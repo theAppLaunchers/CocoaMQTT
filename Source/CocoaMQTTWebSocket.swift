@@ -96,11 +96,11 @@ public class CocoaMQTTWebSocket: CocoaMQTTSocketProtocol {
 
         var urlStr = ""
 
-        if shouldConnectWithURIOnly {
-            urlStr = "\(uri)"
-        } else {
-            urlStr = "\(enableSSL ? "wss": "ws")://\(host):\(port)\(uri)"
-        }
+//        if shouldConnectWithURIOnly {
+//            urlStr = "\(uri)"
+//        } else {
+        urlStr = "wss://\(host):\(port)\(uri)"
+//        }
         
         guard let url = URL(string: urlStr) else { throw CocoaMQTTError.invalidURL }
         try internalQueue.sync {
